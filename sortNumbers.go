@@ -13,7 +13,7 @@ func SortNumbers() {
 	for i := 1; i > 0; {
 		var number string
 		fmt.Println("To stop giving numbers type X")
-		fmt.Printf("Input word number %v ", i)
+		fmt.Println("Input number")
 		_, err := fmt.Scan(&number)
 		if err != nil {
 			fmt.Println("Input Mismatch")
