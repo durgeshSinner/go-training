@@ -1,6 +1,8 @@
 package main
 
-import "fmt"
+import (
+	"fmt"
+)
 
 type Employee struct {
 	name   string
@@ -12,23 +14,38 @@ var pricePerHour int = 200
 
 func EmployeeSalary() {
 
-	employeeCount := 0
-
+	var employees []Employee
 	fmt.Println("Welcome to the Employee salary Calculator")
-	for true {
-		employeeCount++
+	for i := 0; i < 3; {
+
 		var employeeName string
 		var hours int
 		var salary int
 
-		fmt.Printf("Please input employee %v details\n", employeeCount)
+		fmt.Printf("Please input employee %v details\n", i+1)
 		fmt.Print("Name : ")
 		fmt.Scan(&employeeName)
 		fmt.Print("Hours : ")
 		fmt.Scan(&hours)
-		salary = hours * pricePerHour
+		if hours > 40 {
+			salary = 40*pricePerHour + ((hours - 40) * pricePerHour / 2)
+		} else {
+			salary = hours * pricePerHour
+		}
 
-		fmt.Printf("Hello %v you are earning %v\n", employeeName, salary)
+		var employee = Employee{
+			name:   employeeName,
+			hours:  hours,
+			salary: salary,
+		}
+		employees = append(employees, employee)
+		fmt.Printf("Hello %v you are earning %v\n", employee.name, employee.salary)
+		i++
+
+	}
+	fmt.Println("All employees details : ")
+	for _, employee := range employees {
+		fmt.Printf("Employee Name %v worked for %v and earned %v \n", employee.name, employee.hours, employee.salary)
 
 	}
 }
